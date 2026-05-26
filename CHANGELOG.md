@@ -95,6 +95,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Windows installer and `apm self-update` survive AppLocker / App Control for Business (WDAC) policies by staging the release into the allow-listed per-user install root before running the `apm.exe --version` smoke test, and emit AppLocker-specific guidance on `0x80070005` Access Denied instead of silently falling back to pip. (#1390, closes #1389)
 - `apm uninstall <local-path>` on Windows no longer rejects absolute paths (`C:\...\my-pkg`) as "Invalid package format" and silently leaves deployed copilot-app workflow DB rows behind. Local paths are now detected on every platform, so install/uninstall round-trips cleanly. (#1413)
 
+### Changed
+
+- `apm compile --watch` picks up mid-session edits to `apm.yml`'s `target:` / `targets:` on the next file event instead of caching the resolved target until the watcher is restarted; previously the value resolved at startup was reused on every recompile. Follow-up to #1349. (#1403)
+- `apm compile --watch --clean` prints an explicit `[!]` warning that `--clean` is ignored in watch mode and continues; previously the flag was silently dropped. Run `apm compile --clean` separately between watch sessions to remove orphaned outputs. (#1403)
+
 ## [0.14.0] - 2026-05-18
 
 ### Breaking
