@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Reject string-form `@alias` dependency shorthand at parse time with a migration error; use object form with `alias:` instead -- by @prateek (#1301)
 
+### Added
+
+- LSP server management: declare language servers in `apm.yml` and `apm install` wires them into Claude Code and GitHub Copilot CLI automatically -- by @stbenjam (#1424)
+
 ## [0.17.0] - 2026-06-03
 
 ### Added

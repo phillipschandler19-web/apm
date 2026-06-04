@@ -336,6 +336,50 @@ dependencies:
       url: "https://mcp.internal.example.com"
 ```
 
+## LSP dependency formats
+
+LSP (Language Server Protocol) servers give supported runtimes real-time
+code intelligence. APM currently writes LSP config for Claude Code and
+GitHub Copilot CLI while keeping the dependency schema runtime-neutral.
+
+```yaml
+dependencies:
+  lsp:
+    # String reference (name only)
+    - gopls
+
+    # Full object
+    - name: pyright
+      command: pyright-langserver
+      args: ["--stdio"]
+      extensionToLanguage:
+        ".py": python
+        ".pyi": python
+      transport: stdio                          # stdio (default) | socket
+      env:
+        PYTHONPATH: "./src"
+      startupTimeout: 10000
+
+    - name: rust-analyzer
+      command: rust-analyzer
+      extensionToLanguage:
+        ".rs": rust
+      restartOnCrash: true
+      maxRestarts: 3
+```
+
+Required fields (object form): `name`, `command`, `extensionToLanguage`.
+
+Optional fields: `args`, `transport`, `env`, `initializationOptions`,
+`settings`, `workspaceFolder`, `startupTimeout`, `shutdownTimeout`,
+`restartOnCrash`, `maxRestarts`.
+
+`apm install` writes LSP config to the detected runtime targets:
+Claude Code uses `.lsp.json` or `~/.claude.json`, and GitHub Copilot CLI
+uses `.github/lsp.json` or `~/.copilot/lsp-config.json`. Copilot CLI
+uses `fileExtensions` on disk; manifests continue to use
+`extensionToLanguage`.
+
 ## Version pinning
 
 | Strategy | Syntax | When to use |
