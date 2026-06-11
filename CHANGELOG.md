@@ -36,6 +36,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optional-auth MCP registry servers now install without token prompts when values are unset; `apm install` also omits empty runtime config entries and preserves user-edited optional values on reinstall; refs #20. (#1734)
 - Dependencies with the same path on different git hosts no longer collide in `apm.lock.yaml`; `apm install` keeps GitHub/GitLab PATs off generic-host file downloads, routes bespoke GitLab hosts through `type: gitlab`, and surfaces non-404 download failures with host and endpoint context. Reading private files from a generic non-default host now requires a whole-repo git dependency or explicit backend signal; see the dependency and lockfile docs (closes #773). (#1735)
 - GitLab `path:` files now just work on self-hosted instances where the REST API is disabled or restricted -- APM fetches via git transport automatically. `GITLAB_APM_PAT` / `GITLAB_TOKEN` remain available as a thin REST API fallback; closes #1014. (#1740)
+- `apm compile --target copilot` no longer writes empty `AGENTS.md`
+  shell files when `.github/instructions/` already holds deployed
+  instructions; `--clean` also removes stale APM-generated shells while
+  preserving hand-authored files. Use `--no-dedup` / `--force-instructions`
+  to write full `AGENTS.md` files anyway. (by @tillig; closes #1730, related:
+  #1138, #1550) (#1742)
 
 ## [0.19.0] - 2026-06-09
 
