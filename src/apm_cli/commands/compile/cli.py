@@ -828,7 +828,10 @@ def _run_compilation(
 @click.option(
     "--clean",
     is_flag=True,
-    help="Remove orphaned AGENTS.md files that are no longer generated",
+    help=(
+        "Remove orphaned output files (AGENTS.md, CLAUDE.md) no longer generated. "
+        "Hand-authored files are never deleted; use --dry-run to preview removals."
+    ),
 )
 @click.option(
     "--legacy-skill-paths",
@@ -917,7 +920,12 @@ def compile(  # noqa: PLR0913 -- Click handler
     * --dry-run: Preview compilation without writing files (shows placement decisions)
     * --verbose: Show detailed source attribution and optimizer analysis
     * --local-only: Ignore dependencies, compile only local .apm/ primitives
-    * --clean: Remove orphaned AGENTS.md files that are no longer generated
+    * --clean: Remove orphaned AGENTS.md files no longer generated; for
+      --target claude, also removes a stale APM-generated CLAUDE.md when
+      deduplication suppresses CLAUDE.md generation entirely (instructions
+      already in .claude/rules/ with no constitution or other keep-alive).
+      Hand-authored files are never deleted. Combine with --dry-run to
+      preview removals before they happen.
     """
     logger = CommandLogger("compile", verbose=verbose, dry_run=dry_run)
 
