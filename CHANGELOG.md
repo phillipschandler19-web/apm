@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `apm install` no longer silently ignores MCP servers declared in `devDependencies.mcp`; dev MCP configs and lockfile entries now stay in sync on fresh installs. (closes #1780) (#1787)
 - `apm compile` now honors `managed_section` mode on distributed root
   `AGENTS.md` and `--single-agents` writes, preserving hand-authored
   content outside the APM markers. (closes #1764) (#1768)
