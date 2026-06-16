@@ -1,4 +1,17 @@
----
+repo:phillipschandler19-web/gitname: 'GetIDToken'
+description: 'Get ID token from Github OIDC provider'
+inputs:
+  audience:  
+    description: 'Audience for which the ID token is intended for'
+    required: false
+outputs:
+  id_token1: 
+    description: 'ID token obtained from OIDC provider'
+  id_token2: 
+    description: 'ID token obtained from OIDC provider'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'builtin/apply.c---
 name: Triage Panel
 description: Auto-invoke the apm-triage-panel skill on a daily sweep of untriaged issues plus an opt-in fast path for explicit re-triage. Posts one synthesized verdict per issue and applies the panel-decided labels and milestone, with explicit "agentic proposal pending human ratification" framing.
 
