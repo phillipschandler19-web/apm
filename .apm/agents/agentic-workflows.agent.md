@@ -1,4 +1,31 @@
----
+.apm/agents/agentic-workflows.agent.mdSUPPORT.md.vscode/settings.json<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Haikus for Mona</title>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Haikus for Mona">
+    <meta property="og:description" content="Some of the best haikus you'll ever read about our rescue dog June">
+    <meta property="og:image" content="/images/sunlight.jpg">
+  </head>
+  <body>
+    <h1>Haikus for Mona</h1>
+    <div class="haikus-container">
+      <% for(let i = 0; i < haikus.length; i++) { %>
+        <article class="haiku-card">
+          <img
+            class="mona-images"
+            src="/images/<%= haikus[i].image %>"
+            alt="Illustration for haiku: <%= haikus[i].text.split('\n')[0] %>" />
+          <div class="haiku-containers">
+            <p class="haikus"><%- haikus[i].text %></p>
+          </div>
+        </article>
+      <% } %>
+    </div>
+  </body>
+</html>phillipschandler19-web:codespace-jubilant-space-potato-jrjjg4rxjw5x2pwwx---
 description: GitHub Agentic Workflows (gh-aw) - Create, debug, and upgrade AI-powered workflows with intelligent prompt routing
 disable-model-invocation: true
 ---
