@@ -37,7 +37,15 @@ gh aw mcp list-tools tavily my-workflow --verbosetools.web-fetch# gh-aw-metadata
     save-always: # optional, default is false
           https://github.com/octokit/core.js#readmehttps://api.github.com/users/octocat/following{/other_userhttps://api.github.com/users/octocat/gists{/gist_id/\__, |\___|_| |_|\__|_|\___|
 #          __/ |
-#  _    _ |___/ 
+#  _    _ |___/ safe-outputs:
+  create-pull-request:
+    github-token-for-extra-empty-commit: ${{ secrets.MY_CI_TRIGGER_PAT }}safe-outputs:
+  push-to-pull-request-branch:
+    github-token-for-extra-empty-commit: ${{ secrets.MY_CI_TRIGGER_PAT }}network:
+  allowed:
+    - defaults
+    - "*.tavily.com"gh aw mcp inspect my-workflow --server tavily
+gh aw mcp list-tools tavily my-workflow --verboseTopic :: System :: Hardware :: Universal Serial Bus (USB) :: Communications Device Class (CDC)https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1489
 # | |  | |                / _| |
 # | |  | | ___ _ __ _  __| |_| | _____      ____
 # | |/\| |/ _ \ '__| |/ /|  _| |/ _ \ \ /\ / / ___|
